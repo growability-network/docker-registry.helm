@@ -103,21 +103,19 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
   value: {{ .Values.s3.secure | quote }}
 {{- end -}}
 
-{{- if .Values.s3.secure }}
-- name: REGISTRY_STORAGE_S3_SECURE
-  value: {{ .Values.s3.secure | quote }}
-{{- end -}}
-
 {{- if .Values.s3.multipartcopychunksize }}
-multipartcopychunksize: {{ .Values.s3.multipartcopychunksize }}
+- name: REGISTRY_STORAGE_S3_MULTIPARTCOPYCHUNKSIZE
+  value: {{ .Values.s3.multipartcopychunksize | quote }}
 {{- end }}
 
 {{- if .Values.s3.multipartcopymaxconcurrency }}
-multipartcopymaxconcurrency: {{ .Values.s3.multipartcopymaxconcurrency }}
+- name: REGISTRY_STORAGE_S3_MULTIPARTCOPYMAXCONCURRENCY
+  value: {{ .Values.s3.multipartcopymaxconcurrency | quote }}
 {{- end }}
 
 {{- if .Values.s3.multipartcopythresholdsize }}
-multipartcopythresholdsize: {{ .Values.s3.multipartcopythresholdsize }}
+- name: REGISTRY_STORAGE_S3_MULTIPARTCOPYTHRESHOLDSIZE
+  value: {{ .Values.s3.multipartcopythresholdsize | quote }}
 {{- end }}
 
 {{- else if eq .Values.storage "swift" }}
